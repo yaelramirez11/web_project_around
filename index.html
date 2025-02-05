@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alrededor de los EE.UU</title>
+    <meta
+      name="description"
+      content="Proyecto correspondiente al sprint #7 de TripleTen."
+    />
+    <meta name="author" content="Yael Ramírez" />
+    <meta name="keywords" content="html, css, javascript, github" />
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+  <body class="body">
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/Vector.png"
+          alt="Logo de AroundtheUS"
+          class="header__image"
+        />
+        <img src="./images/Line.png" alt="Línea blanca" class="header__line" />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__content">
+            <div class="profile__avatar">
+              <img
+                src="./images/Avatar.png"
+                alt="Foto de perfil del usuario"
+                class="profile__image"
+              />
+            </div>
+            <div class="profile__data">
+              <h1 class="profile__username">Jacques Costeau</h1>
+              <button class="profile__edit-info"></button>
+              <h2 class="profile__about-me">Explorador</h2>
+            </div>
+          </div>
+          <button class="profile__add-profile">+</button>
+        </section>
+        <section class="elements">
+          <div class="element">
+            <div class="element__rectangle">
+              <img
+                src="./images/Valle de Yosemite.jpg"
+                alt="Valle de Yosemite"
+                class="element__image"
+              />
+              <div class="element__info">
+                <p class="element__text">Valle de Yosemite</p>
+                <button class="element__button">
+                  <img
+                    src="./images/Like.png"
+                    alt="botón de me gusta"
+                    class="element__button-image"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="element">
+            <div class="element__rectangle">
+              <img
+                src="./images/Lago Louise.png"
+                alt="Lago Louise"
+                class="element__image"
+              />
+              <div class="element__info">
+                <p class="element__text">Lago Louise</p>
+                <button class="element__button">
+                  <img
+                    src="./images/Like.png"
+                    alt="botón de me gusta"
+                    class="element__button-image"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="element">
+            <div class="element__rectangle">
+              <img
+                src="./images/Montañas calvas.png"
+                alt="Montañas Calvas"
+                class="element__image"
+              />
+              <div class="element__info">
+                <p class="element__text">Montañas Calvas</p>
+                <button class="element__button">
+                  <img
+                    src="./images/Like.png"
+                    alt="botón de me gusta"
+                    class="element__button-image"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="element">
+            <div class="element__rectangle">
+              <img
+                src="./images/Latemar.png"
+                alt="Latemar"
+                class="element__image"
+              />
+              <div class="element__info">
+                <p class="element__text">Latemar</p>
+                <button class="element__button">
+                  <img
+                    src="./images/Like.png"
+                    alt="botón de me gusta"
+                    class="element__button-image"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="element">
+            <div class="element__rectangle">
+              <img
+                src="./images/Vanois National.png"
+                alt="Vanois National"
+                class="element__image"
+              />
+              <div class="element__info">
+                <p class="element__text">Vanois National Park</p>
+                <button class="element__button">
+                  <img
+                    src="./images/Like.png"
+                    alt="botón de me gusta"
+                    class="element__button-image"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="element">
+            <div class="element__rectangle">
+              <img
+                src="./images/Lago di Braies.png"
+                alt="Lago di Braies"
+                class="element__image"
+              />
+              <div class="element__info">
+                <p class="element__text">Lago di Braies</p>
+                <button class="element__button">
+                  <img
+                    src="./images/Like.png"
+                    alt="botón de me gusta"
+                    class="element__button-image"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__text">© 2024 Around The U.S.</p>
+      </footer>
+    </div>
+    <section class="popup">
+      <div class="popup__content">
+        <form class="form">
+          <h3 class="form__title">Editar perfil</h3>
+          <input
+            class="form__input form__input_name"
+            type="text"
+            placeholder="Nombre"
+          />
+          <input
+            class="form__input form__input_about"
+            type="text"
+            placeholder="Acerca de mí"
+          />
+          <button type="button" class="form__submit">Guardar</button>
+          <div class="loader" id="loader">
+            <div class="loader__id" id="loader__circle"></div>
+          </div>
+        </form>
+        <button class="popup__close"></button>
+      </div>
+    </section>
+    <script src="./scripts/index.js" defer></script>
+  </body>
+</html>
