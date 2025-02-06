@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let buttonEdit = document.querySelector(".profile__edit");
+  let buttonEdit = document.querySelector(".profile__edit-info");
   let openPopup = document.querySelector(".popup");
   let buttonClose = document.querySelector(".popup__close");
   let closePopup = document.querySelector(".popup");
@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let inputAbout = document.querySelector(".form__input_about");
   let textTitle = document.querySelector(".profile__title");
   let textText = document.querySelector(".profile__text");
-  let textName = textTitle.textContent;
-  let textAbout = textText.textContent;
   let buttonSubmit = document.querySelector(".form__submit");
   const loaderTimeout = 5000;
   function open() {
@@ -67,5 +65,4 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", like);
   });
   buttonSubmit.addEventListener("click", handleProfileFormSubmit);
-  buttonEdit.addEventListener("click", open);
 });
