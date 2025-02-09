@@ -4,4 +4,4 @@ Este proyecto trata de una página interactiva en la que los usuarios pueden añ
 
 Las técnicas y tecnologías usadas para este proyecto fueron los lenguajes de programación como HTML, JavaScript y CSS, además del uso de plataformas para desarrolladores como GitHub.
 
-https://yaelramirez11.github.io/web_project_around
+https://yaelramirez11.github.io/web_project_around/
