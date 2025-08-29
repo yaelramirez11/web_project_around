@@ -41,12 +41,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function like(event) {
-    let button = event.target;
+    let button = event.currentTarget;
     let currentBackground = window.getComputedStyle(button).backgroundImage;
-    if (currentBackground.includes("btn-like-nr.png")) {
+    if (currentBackground.includes("Like.png")) {
       button.style.backgroundImage = 'url("./images/btn-like-ac.png")';
     } else {
-      button.style.backgroundImage = 'url("./images/btn-like-nr.png")';
+      button.style.backgroundImage = 'url("./images/Like.png")';
     }
   }
 
@@ -69,4 +69,75 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", like);
   });
   buttonSubmit.addEventListener("click", handleProfileFormSubmit);
+
+  const initialCards = [
+    {
+      name: "Valle de Yosemite",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+    },
+    {
+      name: "Lago Louise",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+    },
+    {
+      name: "Montañas Calvas",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+    },
+    {
+      name: "Latemar",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+    },
+    {
+      name: "Parque Nacional de la Vanoise",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+    },
+    {
+      name: "Lago di Braies",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+    },
+  ];
+
+  const cardsContainer = document.querySelector(".cards-container");
+
+  function createCard(cardData) {
+    const card = document.createElement("div");
+    card.classList.add("element");
+
+    const rectangle = document.createElement("div");
+    rectangle.classList.add("element__rectangle");
+
+    const img = document.createElement("img");
+    img.src = cardData.link;
+    img.alt = cardData.name;
+    img.classList.add("element__image");
+
+    const info = document.createElement("div");
+    info.classList.add("element__info");
+
+    const text = document.createElement("p");
+    text.textContent = cardData.name;
+    text.classList.add("element__text");
+
+    const button = document.createElement("button");
+    button.classList.add("element__button");
+
+    const buttonImg = document.createElement("img");
+    buttonImg.src = "./images/Like.png";
+    buttonImg.alt = "botón de me gusta";
+    buttonImg.classList.add("element__button-image");
+
+    button.appendChild(buttonImg);
+    info.appendChild(text);
+    info.appendChild(button);
+    rectangle.appendChild(img);
+    rectangle.appendChild(info);
+    card.appendChild(rectangle);
+
+    return card;
+  }
+
+  initialCards.forEach((cardData) => {
+    const cardElement = createCard(cardData);
+    cardsContainer.appendChild(cardElement);
+  });
 });
