@@ -103,35 +103,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const card = document.createElement("div");
     card.classList.add("element");
 
-    const rectangle = document.createElement("div");
-    rectangle.classList.add("element__rectangle");
+    const cardRectangle = document.createElement("div");
+    cardRectangle.classList.add("element__rectangle");
 
-    const img = document.createElement("img");
-    img.src = cardData.link;
-    img.alt = cardData.name;
-    img.classList.add("element__image");
+    const cardImage = document.createElement("img");
+    cardImage.src = cardData.link;
+    cardImage.alt = cardData.name;
+    cardImage.classList.add("element__image");
 
-    const info = document.createElement("div");
-    info.classList.add("element__info");
+    const cardInformation = document.createElement("div");
+    cardInformation.classList.add("element__info");
 
-    const text = document.createElement("p");
-    text.textContent = cardData.name;
-    text.classList.add("element__text");
+    const cardText = document.createElement("p");
+    cardText.textContent = cardData.name;
+    cardText.classList.add("element__text");
 
-    const button = document.createElement("button");
-    button.classList.add("element__button");
+    const cardLikeButton = document.createElement("button");
+    cardLikeButton.classList.add("element__button");
 
-    const buttonImg = document.createElement("img");
-    buttonImg.src = "./images/Like.png";
-    buttonImg.alt = "botón de me gusta";
-    buttonImg.classList.add("element__button-image");
+    const cardLikeButtonImage = document.createElement("img");
+    cardLikeButtonImage.src = "./images/Like.png";
+    cardLikeButtonImage.alt = "botón de me gusta";
+    cardLikeButtonImage.classList.add("element__button-image");
 
-    button.appendChild(buttonImg);
-    info.appendChild(text);
-    info.appendChild(button);
-    rectangle.appendChild(img);
-    rectangle.appendChild(info);
-    card.appendChild(rectangle);
+    card.appendChild(cardRectangle);
+    cardRectangle.appendChild(cardImage);
+    cardRectangle.appendChild(cardInformation);
+    cardInformation.appendChild(cardText);
+    cardInformation.appendChild(cardLikeButton);
+    cardLikeButton.appendChild(cardLikeButtonImage);
 
     return card;
   }

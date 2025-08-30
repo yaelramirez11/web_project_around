@@ -1,4 +1,4 @@
-.elements {
+.cards-container {
   display: grid;
   color: #000000;
   margin-top: 70px;
@@ -24,7 +24,7 @@
 }
 
 .element__image {
-  max-width: 282px;
+  max-width: 361px;
   max-height: 282px;
   border-radius: 10px;
 }
@@ -36,6 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-height: 79px;
 }
 
 .element__text {
@@ -44,7 +45,7 @@
   overflow: hidden;
   margin-left: 20px;
   width: 246px;
-  height: 23px;
+  height: 79px;
   font-family: "Inter-black";
   font-weight: 900;
   font-size: 24px;
