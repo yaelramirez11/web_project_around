@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let buttonEdit = document.querySelector(".profile__edit-info");
   let buttonAddProfile = document.querySelector(".profile__add-profile");
   let openPopup = document.querySelector(".popup");
-  let buttonClose = document.querySelector(".popup__close");
+  let buttonClose = document.querySelector(
+    ".popup:not(.popup_add-card) .popup__close"
+  );
   let closePopup = document.querySelector(".popup");
   let buttonsLike = document.querySelectorAll(".element__button");
   let inputName = document.querySelector(".form__input_name");
@@ -10,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let textTitle = document.querySelector(".profile__username");
   let textText = document.querySelector(".profile__about-me");
   let buttonSubmit = document.querySelector(".form__submit");
+  let popupAddCard = document.querySelector(".popup_add-card");
+  const buttonAddCardSubmit = popupAddCard.querySelector(".form__submit");
+  let buttonCloseAddCard = document.querySelector(
+    ".popup_add-card .popup__close"
+  );
+  let inputTitle = document.querySelector(".form__input_title");
+  let inputLink = document.querySelector(".form__input_link");
   const loaderTimeout = 5000;
 
   function open() {
@@ -42,11 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function like(event) {
     let button = event.currentTarget;
-    let currentBackground = window.getComputedStyle(button).backgroundImage;
-    if (currentBackground.includes("Like.png")) {
-      button.style.backgroundImage = 'url("./images/btn-like-ac.png")';
+    let currentBackground = button.querySelector("img");
+    if (currentBackground.src.includes("Like.png")) {
+      currentBackground.src = "./images/Union.png";
     } else {
-      button.style.backgroundImage = 'url("./images/Like.png")';
+      currentBackground.src = "./images/Like.png";
     }
   }
 
@@ -62,13 +71,37 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonSubmit.style.backgroundColor = "#FFFFFF";
   }
 
+  function openAddCardPopup() {
+    popupAddCard.style.display = "flex";
+    inputTitle.value = "";
+    inputLink.value = "";
+  }
+
+  function handleAddCardFormSubmit(evt) {
+    evt.preventDefault();
+    const newCard = {
+      name: inputTitle.value,
+      link: inputLink.value,
+    };
+
+    const cardElement = createCard(newCard);
+    cardsContainer.prepend(cardElement);
+    closeAddCardPopup();
+  }
+
+  function closeAddCardPopup() {
+    popupAddCard.style.display = "none";
+  }
+
   buttonEdit.addEventListener("click", open);
-  buttonAddProfile.addEventListener("click", open);
   buttonClose.addEventListener("click", close);
   buttonsLike.forEach((button) => {
     button.addEventListener("click", like);
   });
   buttonSubmit.addEventListener("click", handleProfileFormSubmit);
+  buttonAddProfile.addEventListener("click", openAddCardPopup);
+  buttonCloseAddCard.addEventListener("click", closeAddCardPopup);
+  buttonAddCardSubmit.addEventListener("click", handleAddCardFormSubmit);
 
   const initialCards = [
     {
@@ -132,6 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
     cardInformation.appendChild(cardText);
     cardInformation.appendChild(cardLikeButton);
     cardLikeButton.appendChild(cardLikeButtonImage);
+
+    cardLikeButton.addEventListener("click", like);
 
     return card;
   }
