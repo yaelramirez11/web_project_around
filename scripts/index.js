@@ -159,14 +159,27 @@ document.addEventListener("DOMContentLoaded", function () {
     cardLikeButtonImage.alt = "botón de me gusta";
     cardLikeButtonImage.classList.add("element__button-image");
 
+    const cardDeleteButton = document.createElement("button");
+    cardDeleteButton.classList.add("element__delete-button");
+
+    const cardDeleteButtonImage = document.createElement("img");
+    cardDeleteButtonImage.src = "./images/Trash.png";
+    cardDeleteButtonImage.alt = "Eliminar tarjeta";
+    cardDeleteButtonImage.classList.add("element__delete-button-image");
+
     card.appendChild(cardRectangle);
     cardRectangle.appendChild(cardImage);
     cardRectangle.appendChild(cardInformation);
     cardInformation.appendChild(cardText);
     cardInformation.appendChild(cardLikeButton);
     cardLikeButton.appendChild(cardLikeButtonImage);
+    cardRectangle.appendChild(cardDeleteButton);
+    cardDeleteButton.appendChild(cardDeleteButtonImage);
 
     cardLikeButton.addEventListener("click", like);
+    cardDeleteButton.addEventListener("click", () => {
+      card.remove();
+    });
 
     return card;
   }

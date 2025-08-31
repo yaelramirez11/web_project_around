@@ -68,6 +68,32 @@
   cursor: pointer;
 }
 
+.element__rectangle {
+  position: relative;
+}
+
+.element__delete-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+}
+
+.element__delete-button-image {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.element__delete-button:hover {
+  opacity: 60%;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .elements {
     display: grid;
