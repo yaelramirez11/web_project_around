@@ -22,14 +22,11 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     max-width: 600px;
     width: 100%;
-    margin: 0px 150px;
+    margin: 0px;
     height: 80px;
-    padding-top: 35px;
+    padding: 35px 40px;
   }
 
   .header__image {

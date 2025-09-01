@@ -85,6 +85,55 @@
   cursor: pointer;
 }
 
+.popup__content-show-image {
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent; /* opcional, para que no haya fondo blanco */
+  padding: 0;
+}
+
+.popup__image {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 75vh;
+  display: block;
+  object-fit: contain;
+}
+
+.popup__image-caption {
+  margin-top: 10px;
+  color: white;
+  font-size: 16px;
+  text-align: start;
+}
+
+.popup__close-button-image {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 70px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  background-image: url(../images/Close\ Icon.png);
+  background-color: rgba(0, 0, 0, 0);
+  background-size: cover;
+}
+.popup__close-button-image:hover {
+  opacity: 60%;
+}
+
 @media screen and (max-width: 768px) {
   .popup {
     justify-content: center;

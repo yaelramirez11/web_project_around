@@ -132,6 +132,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const cardsContainer = document.querySelector(".cards-container");
 
+  const imagePopup = document.querySelector(".popup_show-image");
+  const popupImage = imagePopup.querySelector(".popup__image");
+  const popupCaption = imagePopup.querySelector(".popup__image-caption");
+  const popupCloseButton = imagePopup.querySelector(".popup__close-button");
+
+  function openImagePopup(link, name) {
+    popupImage.src = link;
+    popupImage.alt = name;
+    popupCaption.textContent = name;
+    imagePopup.style.display = "flex";
+  }
+
+  function closeImagePopup() {
+    imagePopup.style.display = "none";
+  }
+
+  popupCloseButton.addEventListener("click", closeImagePopup);
+
   function createCard(cardData) {
     const card = document.createElement("div");
     card.classList.add("element");
@@ -143,6 +161,10 @@ document.addEventListener("DOMContentLoaded", function () {
     cardImage.src = cardData.link;
     cardImage.alt = cardData.name;
     cardImage.classList.add("element__image");
+
+    cardImage.addEventListener("click", () => {
+      openImagePopup(cardData.link, cardData.name);
+    });
 
     const cardInformation = document.createElement("div");
     cardInformation.classList.add("element__info");
