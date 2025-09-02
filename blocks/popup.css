@@ -148,24 +148,52 @@
   }
 
   .popup__content {
-    width: 282px;
-    left: auto;
+    width: 220px;
+    padding: 0 10px;
+    height: 300px;
   }
 
   .form {
-    padding: 25px 22px 25px 22px;
-    width: 282px;
+    padding: 0;
+    margin-top: 20px;
+    width: 220px;
   }
 
   .form__title {
-    width: 238px;
+    width: 220px;
   }
 
   .form__input {
-    width: 238px;
+    width: 220px;
   }
 
   .form__submit {
-    width: 238px;
+    width: 220px;
+  }
+
+  .popup__close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    font-size: 70px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    background-image: url(../images/Close Icon.png);
+    background-color: rgba(0, 0, 0, 0);
+    background-size: cover;
+  }
+
+  .popup__close-button-image {
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    color: white;
+    width: 10px;
+    height: 10px;
   }
 }

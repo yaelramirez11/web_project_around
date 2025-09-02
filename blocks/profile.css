@@ -7,7 +7,7 @@
   max-height: 120px;
   height: 100%;
   color: white;
-  margin-top: 30px;
+  padding-top: 30px;
 }
 
 .profile__content {
@@ -16,8 +16,6 @@
 }
 
 .profile__avatar {
-  display: flex;
-  justify-content: center;
   max-width: 120px;
   max-height: 120px;
   border-radius: 50%;
@@ -25,9 +23,8 @@
 }
 
 .profile__image {
-  display: flex;
-  width: 168.75px;
-  height: 127.5px;
+  width: 120px;
+  height: 120px;
 }
 
 .profile__data {
@@ -36,7 +33,7 @@
   flex-wrap: wrap;
   width: 415px;
   height: 77px;
-  margin-left: 30px;
+  padding-left: 30px;
 }
 
 .profile__username {
@@ -44,7 +41,7 @@
   font-size: 42px;
   font-weight: 500;
   line-height: 48px;
-  width: 373px;
+  width: auto;
   margin: 0;
 }
 
@@ -87,43 +84,67 @@
 
 @media screen and (max-width: 768px) {
   .profile {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
+    width: 581px;
+    margin: 0px;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .profile__content {
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    width: 581px;
   }
 
   .profile__data {
-    margin: 0;
+    width: 380px;
+    height: 80px;
+    margin-left: 10px;
+  }
+
+  .profile__username {
+    font-size: 40px;
+    width: auto;
   }
 
   .profile__add-profile {
-    margin-top: 20px;
+    margin-top: auto;
     align-self: center;
+    width: 60px;
+    height: 45px;
+  }
+
+  .profile__edit-info {
+    margin: auto;
+  }
+
+  .profile__image {
+    width: 120px;
+    height: 120px;
+    border-style: hidden;
   }
 }
 
 @media screen and (max-width: 320px) {
   .profile {
-    margin: 0;
-    width: 282px;
+    margin: auto;
+    width: 220px;
     justify-content: center;
     flex-direction: column;
+    padding-top: 70px;
+    padding-bottom: 60px;
   }
 
   .profile__content {
     flex-direction: column;
     justify-content: center;
-    width: 282px;
+    width: 220px;
   }
 
   .profile__data {
-    margin: 30px 0 0 0;
-    width: 282px;
+    padding: 30px 0 0 0;
+    margin: auto;
+    width: 220px;
     justify-content: center;
   }
 
@@ -144,8 +165,8 @@
   }
 
   .profile__add-profile {
-    margin: 36px 0 0 0;
-    height: 50px;
-    width: 282px;
+    height: 25px;
+    width: 220px;
+    align-self: center;
   }
 }

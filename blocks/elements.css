@@ -5,6 +5,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 20px;
+  width: 890px;
 }
 
 .element {
@@ -20,12 +21,13 @@
   overflow: hidden;
   height: 100%;
   width: 100%;
+  position: relative;
   background-color: #ffffff;
 }
 
 .element__image {
-  max-width: 361px;
-  max-height: 282px;
+  width: 282px;
+  height: 282px;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -44,9 +46,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin-left: 20px;
-  width: 246px;
+  padding-left: 20px;
+  width: auto;
   height: 79px;
+  margin: 0;
   font-family: "Inter-black";
   font-weight: 900;
   font-size: 24px;
@@ -67,10 +70,6 @@
 .element__button:hover {
   opacity: 60%;
   cursor: pointer;
-}
-
-.element__rectangle {
-  position: relative;
 }
 
 .element__delete-button {
@@ -98,11 +97,27 @@
 @media screen and (max-width: 768px) {
   .cards-container {
     display: grid;
-    margin-top: 50px;
+    margin-top: 30px;
     color: #000000;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    width: 100%;
+    grid-template-rows: repeat(3, 1fr);
+    width: 590px;
+  }
+
+  .element__image {
+    width: 282px;
+    height: 282px;
+  }
+
+  .element__text {
+    padding-left: 20px;
+    margin: 0px;
+    width: auto;
+  }
+
+  .element__button {
+    margin: 0;
+    padding-right: 30px;
   }
 }
 
@@ -112,5 +127,23 @@
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, 1fr);
     gap: 20px;
+    width: 220px;
+    padding: 40px 0 0 0;
+    margin: 0;
+  }
+
+  .element {
+    width: 220px;
+    height: 361px;
+  }
+
+  .element__image {
+    width: 220px;
+    height: 280px;
+  }
+
+  .element__text {
+    padding-left: 15px;
+    font-size: 18px;
   }
 }
