@@ -48,6 +48,15 @@
   border-bottom: 2px solid #c4c4c4;
 }
 
+.form__input:invalid {
+  border-bottom: 2px solid red;
+}
+
+.form__input-error {
+  font-size: 12px;
+  color: red;
+}
+
 .form__submit {
   margin-top: 48px;
   padding: 0;
@@ -56,6 +65,12 @@
   background-color: #000000;
   border: 2px solid #c4c4c4;
   color: #c4c4c4;
+}
+.form__submit.form__submit_inactive,
+.form__submit:disabled {
+  background-color: #ccc; /* gris claro */
+  cursor: not-allowed; /* cursor prohibido */
+  opacity: 0.6; /* un poco transparente */
 }
 
 .form__submit:hover {
@@ -183,7 +198,7 @@
     text-align: center;
     line-height: 40px;
     cursor: pointer;
-    background-image: url(../images/Close Icon.png);
+    background-image: url(../images/Close\Icon.png);
     background-color: rgba(0, 0, 0, 0);
     background-size: cover;
   }

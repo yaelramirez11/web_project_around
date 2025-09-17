@@ -54,13 +54,23 @@
             class="form__input form__input_name"
             type="text"
             placeholder="Nombre"
+            minlength="2"
+            maxlength="40"
+            name="name"
+            required
           />
+          <span class="form__input-error"></span>
           <input
             class="form__input form__input_about"
             type="text"
             placeholder="Acerca de mí"
+            minlength="2"
+            maxlength="200"
+            name="about"
+            required
           />
-          <button type="button" class="form__submit">Guardar</button>
+          <span class="form__input-error"></span>
+          <button type="submit" class="form__submit">Guardar</button>
           <div class="loader" id="loader">
             <div class="loader__id" id="loader__circle"></div>
           </div>
@@ -76,14 +86,20 @@
             class="form__input form__input_title"
             type="text"
             placeholder="Título de la imagen"
+            minlength="2"
+            maxlength="30"
+            name="title"
             required
           />
+          <span class="form__input-error"></span>
           <input
             class="form__input form__input_link"
             type="url"
             placeholder="Enlace de la imagen"
+            name="link"
             required
           />
+          <span class="form__input-error"></span>
           <button type="submit" class="form__submit">Crear</button>
         </form>
         <button type="button" class="popup__close"></button>
@@ -103,5 +119,6 @@
       </div>
     </section>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>
