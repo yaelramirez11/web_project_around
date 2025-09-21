@@ -210,4 +210,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const cardElement = createCard(cardData);
     cardsContainer.appendChild(cardElement);
   });
+
+  function enablePopupCloseOnOverlay() {
+    // selecciona todos los popups
+    document.querySelectorAll(".popup").forEach((popup) => {
+      const content = popup.querySelector(
+        ".popup__content, .popup__content-show-image"
+      );
+      // Cerrar popup al hacer clic fuera del contenido:
+      popup.addEventListener("click", (event) => {
+        if (!content.contains(event.target)) {
+          popup.style.display = "none";
+        }
+      });
+    });
+  }
+  // activamos la función
+  enablePopupCloseOnOverlay();
 });
