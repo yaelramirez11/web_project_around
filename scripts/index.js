@@ -1,3 +1,4 @@
+import Card from "./Card.js"; // importar el archivo Card.js antes del DOM, pero su contenido se incluye dentro del DOM mas abajo en el código.
 document.addEventListener("DOMContentLoaded", function () {
   let buttonEdit = document.querySelector(".profile__edit-info");
   let buttonAddProfile = document.querySelector(".profile__add-profile");
@@ -84,7 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
       link: inputLink.value,
     };
 
-    const cardElement = createCard(newCard);
+    const card = new Card(newCard, ".card-template", openImagePopup, like); //ahora las tarjetas se crean mediante una clase(Card, en Card.js) y no mediante una función(createCard), y recibe múltiples parámetros, haciendo que cada tarjeta sea autónoma sin depender de variables globales.
+    const cardElement = card.generateCard(); //ahora todo está encapsulado dentro de Card, usando el método generateCard() para crear tarjetas listas para insertar, haciendo el código mas limpio.
     cardsContainer.prepend(cardElement);
     closeAddCardPopup();
   }
@@ -150,67 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   popupCloseButton.addEventListener("click", closeImagePopup);
 
-  function createCard(cardData) {
-    const card = document.createElement("div");
-    card.classList.add("element");
-
-    const cardRectangle = document.createElement("div");
-    cardRectangle.classList.add("element__rectangle");
-
-    const cardImage = document.createElement("img");
-    cardImage.src = cardData.link;
-    cardImage.alt = cardData.name;
-    cardImage.classList.add("element__image");
-
-    cardImage.addEventListener("click", () => {
-      openImagePopup(cardData.link, cardData.name);
-    });
-
-    const cardInformation = document.createElement("div");
-    cardInformation.classList.add("element__info");
-
-    const cardText = document.createElement("p");
-    cardText.textContent = cardData.name;
-    cardText.classList.add("element__text");
-
-    const cardLikeButton = document.createElement("button");
-    cardLikeButton.classList.add("element__button");
-
-    const cardLikeButtonImage = document.createElement("img");
-    cardLikeButtonImage.src = "./images/Like.png";
-    cardLikeButtonImage.alt = "botón de me gusta";
-    cardLikeButtonImage.classList.add("element__button-image");
-
-    const cardDeleteButton = document.createElement("button");
-    cardDeleteButton.classList.add("element__delete-button");
-
-    const cardDeleteButtonImage = document.createElement("img");
-    cardDeleteButtonImage.src = "./images/Trash.png";
-    cardDeleteButtonImage.alt = "Eliminar tarjeta";
-    cardDeleteButtonImage.classList.add("element__delete-button-image");
-
-    card.appendChild(cardRectangle);
-    cardRectangle.appendChild(cardImage);
-    cardRectangle.appendChild(cardInformation);
-    cardInformation.appendChild(cardText);
-    cardInformation.appendChild(cardLikeButton);
-    cardLikeButton.appendChild(cardLikeButtonImage);
-    cardRectangle.appendChild(cardDeleteButton);
-    cardDeleteButton.appendChild(cardDeleteButtonImage);
-
-    cardLikeButton.addEventListener("click", like);
-    cardDeleteButton.addEventListener("click", () => {
-      card.remove();
-    });
-
-    return card;
-  }
-
-  initialCards.forEach((cardData) => {
-    const cardElement = createCard(cardData);
-    cardsContainer.appendChild(cardElement);
-  });
-
   function enablePopupCloseOnOverlay() {
     // selecciona todos los popups de la página y para cada uno de ellos...
     document.querySelectorAll(".popup").forEach((popup) => {
@@ -249,4 +190,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   //llamámos a la función
   enablePopupCloseOnEsc();
+
+  initialCards.forEach((cardData) => {
+    //el forEach actual convierte initialCards en objetos Card completos, cada uno con su comportamiento y métodos, mientras que el anterior solo creaba elementos sueltos con una función.
+    const card = new Card(cardData, ".card-template", openImagePopup, like); //ahora cada tarjeta es un objeto con su propia lógica y no con una función externa (createCard(cardData)), la cuál era una lógica dispersa.
+    const cardElement = card.generateCard();
+    cardsContainer.appendChild(cardElement);
+  });
 });
