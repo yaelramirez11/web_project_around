@@ -1,4 +1,10 @@
 import Card from "./Card.js"; // importar el archivo Card.js antes del DOM, pero su contenido se incluye dentro del DOM mas abajo en el código.
+import {
+  openImagePopup,
+  closeImagePopup,
+  enablePopupCloseOnEsc,
+  enablePopupCloseOnOverlay,
+} from "./utils.js";
 document.addEventListener("DOMContentLoaded", function () {
   let buttonEdit = document.querySelector(".profile__edit-info");
   let buttonAddProfile = document.querySelector(".profile__add-profile");
@@ -135,59 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const cardsContainer = document.querySelector(".cards-container");
 
   const imagePopup = document.querySelector(".popup_show-image");
-  const popupImage = imagePopup.querySelector(".popup__image");
-  const popupCaption = imagePopup.querySelector(".popup__image-caption");
   const popupCloseButton = imagePopup.querySelector(".popup__close-button");
-
-  function openImagePopup(link, name) {
-    popupImage.src = link;
-    popupImage.alt = name;
-    popupCaption.textContent = name;
-    imagePopup.style.display = "flex";
-  }
-
-  function closeImagePopup() {
-    imagePopup.style.display = "none";
-  }
 
   popupCloseButton.addEventListener("click", closeImagePopup);
 
-  function enablePopupCloseOnOverlay() {
-    // selecciona todos los popups de la página y para cada uno de ellos...
-    document.querySelectorAll(".popup").forEach((popup) => {
-      //almacenamos los datos del popup en la constante "content"
-      const content = popup.querySelector(
-        ".popup__content, .popup__content-show-image"
-      );
-      // Añadimos el evento de click para todos los popups
-      popup.addEventListener("click", (event) => {
-        // Si el contenido del popup NO contiene el "target" donde se realizó el evento...
-        if (!content.contains(event.target)) {
-          //Cerrar popup al hacer clic fuera del contenido
-          popup.style.display = "none";
-        }
-      });
-    });
-  }
   // activamos la función
   enablePopupCloseOnOverlay();
 
-  function enablePopupCloseOnEsc() {
-    //añadimos un evento que detecte todas las teclas presionadas en la página
-    document.addEventListener("keydown", (event) => {
-      //si la tecla presionada es estrictamente igual a "Escape"
-      if (event.key === "Escape") {
-        // entonces seleccionamos todos los popups de la página y para cada uno de ellos...
-        document.querySelectorAll(".popup").forEach((popup) => {
-          //comprobamos que si el popup es visible actualmente...
-          if (popup.style.display === "flex") {
-            //lo cierre.
-            popup.style.display = "none";
-          }
-        });
-      }
-    });
-  }
   //llamámos a la función
   enablePopupCloseOnEsc();
 
