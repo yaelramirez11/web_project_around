@@ -90,7 +90,7 @@
   text-align: center;
   line-height: 40px;
   cursor: pointer;
-  background-image: url(../images/Close\ Icon.png);
+  background-image: url(../images/CloseIcon.png);
   background-color: rgba(0, 0, 0, 0);
   background-size: cover;
 }
@@ -141,7 +141,7 @@
   text-align: center;
   line-height: 40px;
   cursor: pointer;
-  background-image: url(../images/Close\ Icon.png);
+  background-image: url(../images/CloseIcon.png);
   background-color: rgba(0, 0, 0, 0);
   background-size: cover;
 }
@@ -198,7 +198,7 @@
     text-align: center;
     line-height: 40px;
     cursor: pointer;
-    background-image: url(../images/Close\Icon.png);
+    background-image: url(../images/CloseIcon.png);
     background-color: rgba(0, 0, 0, 0);
     background-size: cover;
   }
