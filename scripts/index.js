@@ -5,6 +5,8 @@ import {
   enablePopupCloseOnEsc,
   enablePopupCloseOnOverlay,
 } from "./utils.js";
+import Section from "./Section.js";
+import Popup from "./Popup.js";
 document.addEventListener("DOMContentLoaded", function () {
   let buttonEdit = document.querySelector(".profile__edit-info");
   let buttonAddProfile = document.querySelector(".profile__add-profile");

@@ -1,4 +1,4 @@
-class Section {
+export default class Section {
   //esta clase es para presentar una lista de elementos en una pagina web
   constructor({ items, renderer }, containerSelector) {
     this._items = items;
