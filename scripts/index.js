@@ -7,6 +7,8 @@ import {
 } from "./utils.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
 document.addEventListener("DOMContentLoaded", function () {
   let buttonEdit = document.querySelector(".profile__edit-info");
   let buttonAddProfile = document.querySelector(".profile__add-profile");
