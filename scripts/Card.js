@@ -1,10 +1,9 @@
 class Card {
-  constructor(data, cardSelector, openImagePopup, like) {
+  constructor(data, cardSelector, handleCardClick) {
     this._title = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._openImagePopup = openImagePopup;
-    this._like = like;
+    this._handleCardClick = handleCardClick;
   }
 
   #getTemplate() {
@@ -21,7 +20,7 @@ class Card {
     cardImage.classList.add("element__image");
 
     cardImage.addEventListener("click", () => {
-      this._openImagePopup(this._link, this._title); //igual aquí. En todo usamos this._, propiedades declaradas en el constructor
+      this._handleCardClick(this._title, this._link); //igual aquí. En todo usamos this._, propiedades declaradas en el constructor
     });
 
     const cardInformation = document.createElement("div");

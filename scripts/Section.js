@@ -19,7 +19,8 @@ export default class Section {
     this.clear(); //antes de renderizar, se limpia el contenedor
     this._items.forEach((item) => {
       //para cada item del array items
-      this._renderer(item); //se llama a la función de callback en cada item, para renderizar a c/u
+      const element = this._renderer(item); //se llama a la función de callback en cada item, para renderizar a c/u
+      this.addItem(element);
     });
   }
 }
