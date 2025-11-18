@@ -5,6 +5,7 @@ export default class UserInfo {
   }
 
   getUserInfo() {
+    //Este método será útil para casos en los que es necesario mostrar los datos del usuario en el formulario abierto.
     return {
       name: this._usernameElement.textContent,
       job: this._userjobElement.textContent,
