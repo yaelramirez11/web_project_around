@@ -14,3 +14,5 @@ allForms.forEach((formElement) => {
   const formValidator = new FormValidator(settingsObject, formElement);
   formValidator.enableValidation();
 });
+
+export default settingsObject;

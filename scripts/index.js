@@ -1,6 +1,5 @@
 import Card from "./Card.js"; // importar el archivo Card.js antes del DOM, pero su contenido se incluye dentro del DOM mas abajo en el código.
 import Section from "./Section.js";
-import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
@@ -11,23 +10,7 @@ import {
   enablePopupCloseOnEsc,
   enablePopupCloseOnOverlay,
 } from "./utils.js";
-
-//CREACIÓN DE INSTANCIAS
-const userInfo = new UserInfo({
-  //primera instancia creada
-  usernameSelector: ".profile__username",
-  userjobSelector: ".profile__about-me",
-}); //se llaman a los parámetros del constructor
-const userData = userInfo.getUserInfo(); //y se llama al método dentro de userInfo que devueva los datos actuales del usuario
-inputName.value = userData.name;
-inputAbout.value = userData.job;
-
-function handleFormSubmit(inputValues) {
-  console.log("Datos recibidos:", inputValues);
-}
-const profilePopup = new PopupWithForm(".profile__edit-info", handleFormSubmit);
-profilePopup.open();
-profilePopup.setEventListeners();
+import settingsObject from "./validate.js";
 
 const initialCards = [
   {
@@ -55,17 +38,35 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
   },
 ];
-const cardsContainer = document.querySelector(".cards-container");
-const imagePopup = document.querySelector(".popup_show-image");
-const popupCloseButton = imagePopup.querySelector(".popup__close-button");
-popupCloseButton.addEventListener("click", closeImagePopup);
-// activamos la función
+
+const userInfo = new UserInfo({
+  usernameSelector: ".profile__username",
+  userjobSelector: ".profile__about-me",
+}); //se llaman a los parámetros del constructor
+const userData = userInfo.getUserInfo(); //y se llama al método dentro de userInfo que devueva los datos actuales del usuario al abrir el Form.
+settingsObject.value = userData.name;
+settingsObject.value = userData.job;
+
+// llamamos a las funciones de utils.js
+closeImagePopup();
 enablePopupCloseOnOverlay();
-//llamámos a la función
 enablePopupCloseOnEsc();
-initialCards.forEach((cardData) => {
-  //el forEach actual convierte initialCards en objetos Card completos, cada uno con su comportamiento y métodos, mientras que el anterior solo creaba elementos sueltos con una función.
-  const card = new Card(cardData, ".card-template", openImagePopup, like); //ahora cada tarjeta es un objeto con su propia lógica y no con una función externa (createCard(cardData)), la cuál era una lógica dispersa.
-  const cardElement = card.generateCard();
-  cardsContainer.appendChild(cardElement);
-});
+
+// Función renderer que crea cada tarjeta (instancia de Card), que será utilizada en la instancia de Section (parámetro renderer del objeto en su constructor).
+const createCard = (cardData) => {
+  const card = new Card(cardData, ".card-template", openImagePopup);
+  return card.generateCard();
+};
+// Crear instancia de Section, llamando a createCard (que es la función renderer)
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: createCard,
+  },
+  ".cards-container"
+);
+// 3. Renderizar todas las tarjetas en el sitio web
+cardSection.renderItems();
+
+// INSTANCIA PARA EDITAR PERFIL
+const editProfilePopup = new PopupWithForm();

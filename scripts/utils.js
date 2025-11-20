@@ -1,17 +1,22 @@
-export function openImagePopup(link, name) {
+export function openImagePopup(name, link) {
   const imagePopup = document.querySelector(".popup_show-image");
   const popupImage = imagePopup.querySelector(".popup__image");
   const popupCaption = imagePopup.querySelector(".popup__image-caption");
 
-  popupImage.src = link;
   popupImage.alt = name;
+  popupImage.src = link;
   popupCaption.textContent = name;
   imagePopup.style.display = "flex";
 }
 
 export function closeImagePopup() {
   const imagePopup = document.querySelector(".popup_show-image");
-  imagePopup.style.display = "none";
+  const popupCloseButton = imagePopup.querySelector(
+    ".popup__close-button, .popup__close-button-image"
+  );
+  popupCloseButton.addEventListener("click", function () {
+    imagePopup.style.display = "none";
+  });
 }
 
 export function enablePopupCloseOnOverlay() {
