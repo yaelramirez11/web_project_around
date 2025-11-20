@@ -1,6 +1,6 @@
 class Card {
   constructor(data, cardSelector, handleCardClick) {
-    this._title = data.name;
+    this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
@@ -15,19 +15,19 @@ class Card {
     cardRectangle.classList.add("element__rectangle");
 
     const cardImage = document.createElement("img");
+    cardImage.alt = this._name;
     cardImage.src = this._link; //ahora se toman de las propiedades de la instancia de Card, en el constructor.
-    cardImage.alt = this._title;
     cardImage.classList.add("element__image");
 
     cardImage.addEventListener("click", () => {
-      this._handleCardClick(this._title, this._link); //igual aquí. En todo usamos this._, propiedades declaradas en el constructor
+      this._handleCardClick(this._name, this._link); //igual aquí. En todo usamos this._, propiedades declaradas en el constructor
     });
 
     const cardInformation = document.createElement("div");
     cardInformation.classList.add("element__info");
 
     const cardText = document.createElement("p");
-    cardText.textContent = this._title; //uso de this._ también aquí.
+    cardText.textContent = this._name; //uso de this._ también aquí.
     cardText.classList.add("element__text");
 
     const cardLikeButton = document.createElement("button");

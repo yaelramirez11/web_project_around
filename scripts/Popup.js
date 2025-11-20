@@ -22,7 +22,7 @@ export default class Popup {
     }
   }
   setEventListeners() {
-    const closeButton = this._popup.querySelector(".popup__close"); //buscamos el botón de cerrar
+    const closeButton = this._popup.querySelector(".popup__close-button"); //buscamos el botón de cerrar
     if (closeButton) {
       //si existe...
       closeButton.addEventListener("click", () => {

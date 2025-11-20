@@ -149,6 +149,10 @@
   opacity: 60%;
 }
 
+.popup_is-opened {
+  display: flex;
+}
+
 @media screen and (max-width: 768px) {
   .popup {
     justify-content: center;

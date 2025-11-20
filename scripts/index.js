@@ -4,12 +4,6 @@ import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import FormValidator from "./FormValidator.js";
-import {
-  openImagePopup,
-  closeImagePopup,
-  enablePopupCloseOnEsc,
-  enablePopupCloseOnOverlay,
-} from "./utils.js";
 import settingsObject from "./validate.js";
 
 const initialCards = [
@@ -47,14 +41,15 @@ const userData = userInfo.getUserInfo(); //y se llama al método dentro de userI
 settingsObject.value = userData.name;
 settingsObject.value = userData.job;
 
-// llamamos a las funciones de utils.js
-closeImagePopup();
-enablePopupCloseOnOverlay();
-enablePopupCloseOnEsc();
+const openImagesPopup = new PopupWithImage(".popup_show-image");
+openImagesPopup.setEventListeners();
 
+function handleCardClick(name, link) {
+  openImagesPopup.open(name, link);
+}
 // Función renderer que crea cada tarjeta (instancia de Card), que será utilizada en la instancia de Section (parámetro renderer del objeto en su constructor).
 const createCard = (cardData) => {
-  const card = new Card(cardData, ".card-template", openImagePopup);
+  const card = new Card(cardData, ".card-template", handleCardClick);
   return card.generateCard();
 };
 // Crear instancia de Section, llamando a createCard (que es la función renderer)
@@ -67,6 +62,3 @@ const cardSection = new Section(
 );
 // 3. Renderizar todas las tarjetas en el sitio web
 cardSection.renderItems();
-
-// INSTANCIA PARA EDITAR PERFIL
-const editProfilePopup = new PopupWithForm();
