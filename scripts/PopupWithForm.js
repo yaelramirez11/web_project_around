@@ -22,6 +22,7 @@ export default class PopupWithForm extends Popup {
       event.preventDefault();
       const inputValues = this._getInputValues(); //después de escuchar, obtenemos los datos del formulario
       this._handleFormSubmit(inputValues); //y ejecutamos la función de callback que pasamos desde afuera
+      this.close();
     });
   }
 
