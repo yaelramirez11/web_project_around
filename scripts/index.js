@@ -5,46 +5,118 @@ import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import FormValidator from "./FormValidator.js";
 import settingsObject from "./validate.js";
+import Api from "./Api.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
-const initialCards = [
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+let currentUserId; //donde se almacena el id recibido del servidor
+let cardSection;
+const changeProfilePic = document.querySelector(".profile__change-photo"); //referenciamos el boton de "cambiar foto de perfil"
+changeProfilePic.addEventListener("click", () => {
+  popupUpdateAvatar.open(); //le añadimos un eventListener de open() para que se abra el popup
+});
+
+const api = new Api({
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+    authorization: "5076d211-3447-4115-b018-7a90a6a8ad2f",
+    "Content-Type": "application/json",
   },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-  },
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-];
+});
 
 const userInfo = new UserInfo({
   usernameSelector: ".profile__username",
   userjobSelector: ".profile__about-me",
+  userAvatarSelector: ".profile__image",
 }); //se llaman a los parámetros del constructor
 
-const popupEditProfile = new PopupWithForm(".popup", (formData) => {
-  // Este es mi handleFormSubmit
-  userInfo.setUserInfo({
-    name: formData.name,
-    job: formData.about,
+api
+  .getAllData()
+  .then(([receivedUserData, receivedCardsData]) => {
+    currentUserId = receivedUserData._id;
+
+    userInfo.setUserInfo({
+      name: receivedUserData.name,
+      job: receivedUserData.about,
+      avatar: receivedUserData.avatar,
+    });
+
+    const createCard = (cardData) => {
+      const card = new Card(
+        cardData,
+        ".card-template",
+        handleCardClick,
+        handleDeleteClick,
+        currentUserId,
+        api
+      );
+      return card.generateCard();
+    };
+
+    cardSection = new Section(
+      {
+        items: receivedCardsData,
+        renderer: createCard,
+      },
+      ".cards-container"
+    );
+
+    cardSection.renderItems();
+  })
+  .catch((error) => {
+    console.log("Error:", error);
   });
+
+const popupUpdateAvatar = new PopupWithForm( //Nueva instancia para el popup de editar Foto
+  ".popup_update-avatar", // Este es el popup
+  (formData) => {
+    return api
+      .changePfP(formData.avatar)
+      .then((userData) => {
+        userInfo.setUserInfo({
+          name: userData.name,
+          job: userData.about,
+          avatar: userData.avatar,
+        });
+        popupUpdateAvatar.close();
+      })
+      .catch((err) => console.log("Error al actualizar avatar:", err));
+  }
+);
+popupUpdateAvatar.setEventListeners(); //y setEventListeners() para que herede los demas listeners de la clase Popup (cierre con Esc, overlay, X).
+
+const popupEditProfile = new PopupWithForm(".popup", (formData) => {
+  return api
+    .updateUserInfo(formData.name, formData.about) //pedimos los datos al servidor y luego los asignamos a los parámetros de name y about en userInfo
+    .then((updatedUser) => {
+      //pasamos la llamada a una secuencia .then(updatedUser) y este parámetro sustituye al anterior en name y job (formData.name/about)
+      userInfo.setUserInfo({
+        name: updatedUser.name,
+        job: updatedUser.about,
+      });
+      popupEditProfile.close(); //SOLO HASTA que se envíen exitosamente los datos al servidor, se cierra el Popup
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
 });
+
+const popupAddCard = new PopupWithForm(".popup_add-card", (formCardData) => {
+  return api
+    .updateCards(formCardData.title, formCardData.link)
+    .then((newCardData) => {
+      const newCard = new Card(newCardData, ".card-template", handleCardClick);
+      const cardElement = newCard.generateCard();
+      cardSection.addItem(cardElement);
+      popupAddCard.close(); //Igual aquí, se cierra SOLO si la petición fue exitosa
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
+});
+
+const popupConfirm = new PopupWithConfirmation(".popup_confirm-delete");
+popupConfirm.setEventListeners();
+
 const buttonEditProfile = document.querySelector(".profile__edit-info"); //se llama al botón
 buttonEditProfile.addEventListener("click", () => {
   const userData = userInfo.getUserInfo(); //se llama al método dentro de userInfo ANTES de abrir el Form para que devueva los datos actuales del usuario al abrir el Form.
@@ -64,15 +136,6 @@ const editProfileFormValidator = new FormValidator(
 // Activamos la validación
 editProfileFormValidator.enableValidation();
 
-const popupAddCard = new PopupWithForm(".popup_add-card", (formCardData) => {
-  const newCardData = {
-    name: formCardData.title,
-    link: formCardData.link,
-  };
-  const newCard = new Card(newCardData, ".card-template", handleCardClick);
-  const cardElement = newCard.generateCard();
-  cardSection.addItem(cardElement);
-});
 const buttonAddCard = document.querySelector(".profile__add-profile"); //igual aquí, se llama al botón
 buttonAddCard.addEventListener("click", () => {
   popupAddCard.open();
@@ -89,18 +152,18 @@ openImagesPopup.setEventListeners();
 function handleCardClick(name, link) {
   openImagesPopup.open(name, link);
 }
-// Función renderer que crea cada tarjeta (instancia de Card), que será utilizada en la instancia de Section (parámetro renderer del objeto en su constructor).
-const createCard = (cardData) => {
-  const card = new Card(cardData, ".card-template", handleCardClick);
-  return card.generateCard();
-};
-// Crear instancia de Section, llamando a createCard (que es la función renderer)
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: createCard,
-  },
-  ".cards-container"
-);
-// 3. Renderizar todas las tarjetas en el sitio web
-cardSection.renderItems();
+function handleDeleteClick(cardInstance) {
+  popupConfirm.setSubmitAction(() => {
+    return api
+      .deleteCard(cardInstance._id)
+      .then(() => {
+        cardInstance.removeCard();
+        popupConfirm.close();
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  });
+
+  popupConfirm.open();
+}

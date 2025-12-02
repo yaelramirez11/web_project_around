@@ -22,6 +22,25 @@
   text-align: start;
 }
 
+.popup__content_deleteConfirmation {
+  height: 181px;
+  width: 430px;
+  padding-left: 60px;
+}
+
+.popup__caption {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  color: black;
+  font-size: 24px;
+  text-align: start;
+  font-family: "Inter-black";
+}
+.form__submit.form__submit-delete {
+  font-size: 18px;
+  margin-top: 30px;
+}
+
 .form {
   display: flex;
   background-color: #ffffff;
@@ -30,6 +49,16 @@
   height: 258px;
   width: 358px;
   flex-direction: column;
+}
+
+.form_type_confirm {
+  height: 181px;
+  margin-top: 0px;
+}
+.form__title-avatar {
+  font-weight: 900;
+  font-size: 24px;
+  font-family: "Inter-black";
 }
 
 .form__title {
