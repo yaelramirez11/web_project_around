@@ -1,7 +1,30 @@
-# Tripleten web_project_around
+# Around the US 🌎📸
+### Plataforma Interactiva de Fotografías
 
-Este proyecto trata de una página interactiva en la que los usuarios pueden añadir, eliminar o dar "me gusta" a las fotos de los lugares más representativos de los Estados Unidos.
+**Objetivo**  
+Crear una plataforma web interactiva que permita a los usuarios compartir y descubrir fotografías de los lugares más representativos de Estados Unidos, fomentando la exploración visual del país.
 
-Las técnicas y tecnologías usadas para este proyecto fueron los lenguajes de programación como HTML, JavaScript y CSS, además del uso de plataformas para desarrolladores como GitHub.
+**Descripción del desarrollo**  
+Aplicación web completa con sistema de gestión de usuarios y contenido multimedia.  
+Incluye:
+- Autenticación de usuarios
+- Gestión de perfiles personalizados
+- Sistema de interacciones sociales (likes)
+- CRUD completo de fotografías
+- Validaciones robustas en tiempo real
+
+**Tecnologías utilizadas**
+- HTML5  
+- CSS3  
+- JavaScript (ES6+)  
+- APIs RESTful  
+- Programación Orientada a Objetos  
+- Diseño Responsive (320px – 1080px)
+
+**Logros técnicos**
+- Sistema de validación de formularios completamente funcional
+- Manejo avanzado de eventos del DOM
+- Arquitectura de clases reutilizable
+- Aplicación de mejores prácticas de desarrollo frontend moderno
 
 https://yaelramirez11.github.io/web_project_around/
